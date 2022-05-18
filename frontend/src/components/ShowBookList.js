@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import '../App.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import BookCard from './BookCard';
-import { API_ENDPOINT } from './api/index';
+import { API_ENDPOINT } from '../api/index';
+import 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css';
 
 class ShowBookList extends Component {
   constructor(props) {
