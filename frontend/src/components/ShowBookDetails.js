@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "../App.css";
-import axios from "axios";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import '../App.css';
+import axios from 'axios';
+import { API_ENDPOINT } from './api/index';
 
 class showBookDetails extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class showBookDetails extends Component {
   componentDidMount() {
     // console.log("Print id: " + this.props.match.params.id);
     axios
-      .get("/api/books/" + this.props.match.params.id)
+      .get(`${API_ENDPOINT}/api/books/` + this.props.match.params.id)
       .then((res) => {
         // console.log("Print-showBookDetails-API-response: " + res.data);
         this.setState({
@@ -22,18 +23,18 @@ class showBookDetails extends Component {
         });
       })
       .catch((err) => {
-        console.log("Error from ShowBookDetails");
+        console.log('Error from ShowBookDetails');
       });
   }
 
   onDeleteClick(id) {
     axios
-      .delete("/api/books/" + id)
+      .delete('/api/books/' + id)
       .then((res) => {
-        this.props.history.push("/");
+        this.props.history.push('/');
       })
       .catch((err) => {
-        console.log("Error form ShowBookDetails_deleteClick");
+        console.log('Error form ShowBookDetails_deleteClick');
       });
   }
 
@@ -41,7 +42,7 @@ class showBookDetails extends Component {
     const book = this.state.book;
     let BookItem = (
       <div>
-        <table className="table table-hover table-dark">
+        <table className='table table-hover table-dark'>
           {/* <thead>
           <tr>
             <th scope="col">#</th>
@@ -52,32 +53,32 @@ class showBookDetails extends Component {
         </thead> */}
           <tbody>
             <tr>
-              <th scope="row">1</th>
+              <th scope='row'>1</th>
               <td>Title</td>
               <td>{book.title}</td>
             </tr>
             <tr>
-              <th scope="row">2</th>
+              <th scope='row'>2</th>
               <td>Author</td>
               <td>{book.author}</td>
             </tr>
             <tr>
-              <th scope="row">3</th>
+              <th scope='row'>3</th>
               <td>ISBN</td>
               <td>{book.isbn}</td>
             </tr>
             <tr>
-              <th scope="row">4</th>
+              <th scope='row'>4</th>
               <td>Publisher</td>
               <td>{book.publisher}</td>
             </tr>
             <tr>
-              <th scope="row">5</th>
+              <th scope='row'>5</th>
               <td>Published Date</td>
               <td>{book.published_date}</td>
             </tr>
             <tr>
-              <th scope="row">6</th>
+              <th scope='row'>6</th>
               <td>Description</td>
               <td>{book.description}</td>
             </tr>
@@ -87,29 +88,29 @@ class showBookDetails extends Component {
     );
 
     return (
-      <div className="ShowBookDetails">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-10 m-auto">
+      <div className='ShowBookDetails'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-md-10 m-auto'>
               <br /> <br />
-              <Link to="/" className="btn btn-outline-warning float-left">
+              <Link to='/' className='btn btn-outline-warning float-left'>
                 Show Book List
               </Link>
             </div>
             <br />
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Book's Record</h1>
-              <p className="lead text-center">View Book's Info</p>
+            <div className='col-md-8 m-auto'>
+              <h1 className='display-4 text-center'>Book's Record</h1>
+              <p className='lead text-center'>View Book's Info</p>
               <hr /> <br />
             </div>
           </div>
           <div>{BookItem}</div>
 
-          <div className="row">
-            <div className="col-md-6">
+          <div className='row'>
+            <div className='col-md-6'>
               <button
-                type="button"
-                className="btn btn-outline-danger btn-lg btn-block"
+                type='button'
+                className='btn btn-outline-danger btn-lg btn-block'
                 onClick={this.onDeleteClick.bind(this, book._id)}
               >
                 Delete Book
@@ -117,10 +118,10 @@ class showBookDetails extends Component {
               <br />
             </div>
 
-            <div className="col-md-6">
+            <div className='col-md-6'>
               <Link
                 to={`/edit-book/${book._id}`}
-                className="btn btn-outline-info btn-lg btn-block"
+                className='btn btn-outline-info btn-lg btn-block'
               >
                 Edit Book
               </Link>
