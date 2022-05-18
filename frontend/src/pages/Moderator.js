@@ -3,7 +3,9 @@ import React from 'react';
 const Moderator = () => {
   return (
     <section className='section'>
-      <div>Moderator</div>
+      <div className='container'>
+        <div>Moderator</div>
+      </div>
     </section>
   );
 };

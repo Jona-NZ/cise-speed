@@ -11,7 +11,7 @@ const Navbar = () => {
             </a>
 
             <button
-              className='navbar-burger'
+              className='navbar-burger navbar-end'
               aria-label='menu'
               aria-expanded='false'
               data-target='navbarBasicExample'
