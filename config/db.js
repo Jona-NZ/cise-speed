@@ -1,8 +1,7 @@
 // db.js
-require("dotenv").config();
+require('dotenv').config();
 
-const mongoose = require("mongoose");
-const config = require("config");
+const mongoose = require('mongoose');
 const db = process.env.MONGODB_CONNECTION_STRING;
 
 const connectDB = async () => {
@@ -11,7 +10,7 @@ const connectDB = async () => {
       useNewUrlParser: true,
     });
 
-    console.log("MongoDB is Connected...");
+    console.log('MongoDB is Connected...');
   } catch (err) {
     console.error(err.message);
     process.exit(1);
