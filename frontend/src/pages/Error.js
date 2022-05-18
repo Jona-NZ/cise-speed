@@ -3,7 +3,9 @@ import React from 'react';
 const Erorr = () => {
   return (
     <section className='section'>
-      <div>404 - Page Not Found</div>
+      <div className='container'>
+        <div>404 - Page Not Found</div>
+      </div>
     </section>
   );
 };

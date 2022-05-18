@@ -3,7 +3,9 @@ import React from 'react';
 const Admin = () => {
   return (
     <section className='section'>
-      <div>Admin</div>
+      <div className='container'>
+        <div>Admin</div>
+      </div>
     </section>
   );
 };

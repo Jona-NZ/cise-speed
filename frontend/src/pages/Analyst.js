@@ -3,7 +3,9 @@ import React from 'react';
 const Analyst = () => {
   return (
     <section className='section'>
-      <div>Analyst</div>
+      <div className='container'>
+        <div>Analyst</div>
+      </div>
     </section>
   );
 };
