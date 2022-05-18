@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Search = () => {
+const SubmitArticle = () => {
   return (
     <section className='section'>
       <div className='container'>
-        <h2 className='subtitle'>Search for an Article</h2>
+        <h2 className='subtitle'>Submit an Article</h2>
         <form action=''>
           <div className='field'>
             <label className='label'>Name</label>
@@ -104,4 +104,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SubmitArticle;
