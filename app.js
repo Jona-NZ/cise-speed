@@ -1,11 +1,11 @@
 // app.js
 
-const express = require("express");
-const connectDB = require("./config/db");
-const path = require("path");
-var cors = require("cors");
+const express = require('express');
+const connectDB = require('./config/db');
+const path = require('path');
+var cors = require('cors');
 // routes
-const books = require("./routes/api/books");
+const books = require('./routes/api/books');
 
 const app = express();
 
@@ -19,10 +19,10 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ extended: false }));
 
 // use Routes
-app.use("/api/books", books);
+app.use('/api/books', books);
 
-const port = process.env.PORT || 8082;
+const port = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname, "/frontend/build")));
+//app.use(express.static(path.join(__dirname, "/frontend/build")));
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
