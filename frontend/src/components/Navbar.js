@@ -26,7 +26,7 @@ const Navbar = () => {
             <a className='navbar-item' href='/'>
               Home
             </a>
-            <a className='navbar-item' href='/search'>
+            <a className='navbar-item' href='search'>
               Search
             </a>
           </div>
@@ -34,13 +34,13 @@ const Navbar = () => {
           <div className='navbar-end'>
             <div className='navbar-item'>
               <div className='buttons'>
-                <a className='button is-link is-light' href='/moderator'>
+                <a className='button is-link is-light' href='moderator'>
                   Moderator Panel
                 </a>
-                <a className='button is-link is-light' href='/analyst'>
+                <a className='button is-link is-light' href='analyst'>
                   Analyst Panel
                 </a>
-                <a className='button is-danger is-light' href='/moderator'>
+                <a className='button is-danger is-light' href='moderator'>
                   Admin Panel
                 </a>
               </div>
