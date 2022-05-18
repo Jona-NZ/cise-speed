@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -6,9 +7,9 @@ const Navbar = () => {
       <div className='container'>
         <nav className='navbar' role='navigation' aria-label='main navigation'>
           <div className='navbar-brand'>
-            <a className='navbar-item' width='125px' height='37.5px' href='/'>
+            <Link className='navbar-item' width='125px' height='37.5px' to='/'>
               <img src='/logo.png' alt='' />
-            </a>
+            </Link>
 
             <button
               className='navbar-burger navbar-end'
@@ -24,29 +25,29 @@ const Navbar = () => {
 
           <div id='navbarBasicExample' className='navbar-menu'>
             <div className='navbar-start'>
-              <a className='navbar-item' href='/'>
+              <Link className='navbar-item' to='/'>
                 Home
-              </a>
-              <a className='navbar-item' href='submit'>
+              </Link>
+              <Link className='navbar-item' to='submit'>
                 Submit Article
-              </a>
-              <a className='navbar-item' href='search'>
+              </Link>
+              <Link className='navbar-item' to='search'>
                 Search
-              </a>
+              </Link>
             </div>
 
             <div className='navbar-end'>
               <div className='navbar-item'>
                 <div className='buttons'>
-                  <a className='button is-link is-light' href='moderator'>
+                  <Link className='button is-link is-light' to='moderator'>
                     Moderator Panel
-                  </a>
-                  <a className='button is-link is-light' href='analyst'>
+                  </Link>
+                  <Link className='button is-link is-light' to='analyst'>
                     Analyst Panel
-                  </a>
-                  <a className='button is-danger is-light' href='moderator'>
+                  </Link>
+                  <Link className='button is-danger is-light' to='moderator'>
                     Admin Panel
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
