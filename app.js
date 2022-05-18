@@ -23,6 +23,6 @@ app.use('/api/books', books);
 
 const port = process.env.PORT || 3000;
 
-//app.use(express.static(path.join(__dirname, "/frontend/build")));
+app.use(express.static(path.join(__dirname, '/frontend/build')));
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
