@@ -27,6 +27,9 @@ const Navbar = () => {
               <a className='navbar-item' href='/'>
                 Home
               </a>
+              <a className='navbar-item' href='submit'>
+                Submit Article
+              </a>
               <a className='navbar-item' href='search'>
                 Search
               </a>

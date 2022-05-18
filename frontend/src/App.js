@@ -7,6 +7,7 @@ import Moderator from './pages/Moderator';
 import Analyst from './pages/Analyst';
 import Admin from './pages/Admin';
 import Error from './pages/Error';
+import SubmitArticle from './pages/SubmitArticle';
 
 /* IMPORT COMPONENTS */
 import Navbar from './components/Navbar';
@@ -18,6 +19,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route exact path='/' element={<Home />} />
+        <Route path='/submit' element={<SubmitArticle />} />
         <Route path='/search' element={<Search />} />
         <Route path='/moderator' element={<Moderator />} />
         <Route path='/analyst' element={<Analyst />} />
