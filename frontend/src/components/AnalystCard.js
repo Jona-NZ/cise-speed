@@ -1,4 +1,94 @@
+import axios from 'axios';
+import { API_ENDPOINT } from '../api/index';
+import React, { useEffect, useState, useRef } from 'react';
+
 const AnalystCard = (props) => {
+  const [articleToDelete, setArticleToDelete] = useState();
+  const didMount = useRef(false);
+
+  let id = props._id;
+
+  const handleDecline = () => {
+    console.log(id);
+
+    axios
+      .delete(`${API_ENDPOINT}/api/analyst/${id}`)
+      .then((res) => {
+        if (res.status === 200) {
+          alert('Article deleted'); //deleting for now, will be transferred to deleted collection later
+          window.location.reload();
+        } else {
+          alert('Error deleting article');
+        }
+      })
+      .catch((err) => {
+        console.log('Error deleting article: ' + err);
+      });
+  };
+
+  const handleApprove = () => {
+    console.log(id);
+    axios
+      .get(`${API_ENDPOINT}/api/analyst/${id}`)
+      .then((res) => {
+        if (res.status === 200) {
+          setArticleToDelete(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log('There has been an error ' + err);
+      });
+  };
+
+  const handleCreate = (articleToDelete) => {
+    const articleData = {
+      author: articleToDelete.author,
+      journalName: articleToDelete.journalName,
+      yearOfPublication: articleToDelete.yearOfPublication,
+      volume: articleToDelete.volume,
+      number: articleToDelete.number,
+      pages: articleToDelete.pages,
+      doi: articleToDelete.doi,
+      extractedText: '',
+      articleMethodology: 'TDD',
+    };
+
+    axios
+      .post(`${API_ENDPOINT}/api/analyst/movetocompleted/`, articleData)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log('There has been an error ' + err);
+      });
+
+    axios
+      .delete(`${API_ENDPOINT}/api/analyst/${id}`)
+      .then((res) => {
+        if (res.status === 200) {
+          alert('Article has successfully been moved for analysis'); //deleting for now, will be transferred to deleted collection later
+          window.location.reload();
+        } else {
+          alert('Error deleting article');
+        }
+      })
+      .catch((err) => {
+        console.log('Error deleting article: ' + err);
+      });
+  };
+
+  useEffect(() => {
+    if (!didMount.current) {
+      return (didMount.current = true);
+    }
+
+    console.log('I AM ARTICLE TO DELETE');
+    console.log(articleToDelete);
+    handleCreate(articleToDelete);
+  }, [articleToDelete]);
+
   return (
     <div className="card">
       <header className="card-header">
@@ -43,12 +133,12 @@ const AnalystCard = (props) => {
         <a href="/" className="card-footer-item">
           Edit
         </a>
-        <a href="/" className="card-footer-item">
+        <button onClick={handleApprove} className="card-footer-item">
           Approve
-        </a>
-        <a href="/" className="card-footer-item">
+        </button>
+        <button onClick={handleDecline} className="card-footer-item">
           Decline
-        </a>
+        </button>
       </footer>
     </div>
   );
