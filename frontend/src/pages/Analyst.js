@@ -58,7 +58,7 @@ const Analyst = () => {
         {articles.length === 0 && (
           <div className="notification is-warning">
             <p className="has-text-centered is-size-4">
-              <strong>No articles to moderate</strong>
+              <strong>No articles to analyse</strong>
             </p>
           </div>
         )}
