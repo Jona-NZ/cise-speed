@@ -6,10 +6,10 @@ const SubmitArticle = () => {
   const [journalName, setJournalName] = useState('');
   const [authorName, setAuthorName] = useState('');
   const [publicationYear, setPublicationYear] = useState('');
-  const [volume, setVolume] = useState('N/A');
-  const [number, setNumber] = useState('N/A');
-  const [pageNumber, setPageNumber] = useState('N/A');
-  const [doi, setDoi] = useState('N/A');
+  const [volume, setVolume] = useState('');
+  const [number, setNumber] = useState('');
+  const [pageNumber, setPageNumber] = useState('');
+  const [doi, setDoi] = useState('');
 
   /* ALERT HANDLING */
   const [successAlert, setSuccessAlert] = useState(false);
@@ -45,10 +45,10 @@ const SubmitArticle = () => {
           setJournalName('');
           setAuthorName('');
           setPublicationYear('');
-          setVolume('N/A');
-          setNumber('N/A');
-          setPageNumber('N/A');
-          setDoi('N/A');
+          setVolume('');
+          setNumber('');
+          setPageNumber('');
+          setDoi('');
         } else {
           setErrorMessage(
             `Error submitting article: ${res.status}. Please try again shortly.`
