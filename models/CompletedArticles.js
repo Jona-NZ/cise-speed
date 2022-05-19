@@ -33,9 +33,9 @@ const CompletedArticlesSchema = new mongoose.Schema({
 });
 
 const CompletedArticles = mongoose.model(
-  'CompletedArticles',
+  'completedArticles',
   CompletedArticlesSchema,
-  'CompletedArticles'
+  'completedArticles'
 );
 
 module.exports = CompletedArticles;

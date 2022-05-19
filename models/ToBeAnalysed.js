@@ -33,9 +33,9 @@ const ToBeAnalysedSchema = new mongoose.Schema({
 });
 
 const ToBeAnalysed = mongoose.model(
-  'ToBeAnalysed',
+  'toBeAnalysed',
   ToBeAnalysedSchema,
-  'ToBeAnalysed'
+  'toBeAnalysed'
 );
 
 module.exports = ToBeAnalysed;

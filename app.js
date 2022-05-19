@@ -5,7 +5,7 @@ const connectDB = require('./config/db');
 const path = require('path');
 var cors = require('cors');
 // routes
-const books = require('./routes/api/books');
+const articles = require('./routes/api/articles');
 // const ToBeModerated = require('./models/ToBeModerated');
 // const ToBeAnalysed = require('./models/ToBeAnalysed');
 // const DeletedArticles = require('./models/DeletedArticles');
@@ -23,7 +23,7 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ extended: false }));
 
 // use Routes
-app.use('/api/books', books);
+app.use('/api/articles', articles);
 
 const port = process.env.PORT || 3000;
 

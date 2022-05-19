@@ -33,9 +33,9 @@ const DeletedArticlesSchema = new mongoose.Schema({
 });
 
 const DeletedArticles = mongoose.model(
-  'DeletedArticles',
+  'deletedArticles',
   DeletedArticlesSchema,
-  'DeletedArticles'
+  'deletedArticles'
 );
 
 module.exports = DeletedArticles;
