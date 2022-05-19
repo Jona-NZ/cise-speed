@@ -6,6 +6,7 @@ const path = require('path');
 var cors = require('cors');
 // routes
 const books = require('./routes/api/books');
+const Book = require('./models/ToBeModerated');
 
 const app = express();
 
@@ -22,6 +23,16 @@ app.use(express.json({ extended: false }));
 app.use('/api/books', books);
 
 const port = process.env.PORT || 3000;
+
+const data = {
+  author: 'author',
+  journalName: 'asd',
+  yearOfPublication: 'asd',
+};
+
+Book.create(data)
+  .then(console.log('working'))
+  .catch((err) => console.log(err));
 
 app.use(express.static(path.join(__dirname, '/frontend/build')));
 
