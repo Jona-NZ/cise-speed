@@ -22,35 +22,39 @@ const Moderator = () => {
   }, []);
 
   let renderCards = () => {
-    let numColumns = Math.round(articles.length / 4);
-    console.log(numColumns);
-
+    let numColumns = Math.ceil(articles.length / 4);
+    let rows = [];
     let count = 0;
 
-    for (let i = numColumns; i >= 0; i--) {
-      <div className='columns'>
-        {/* for (let i = 0; i < 4; i++) {
-
-        if (i == 3) {
-          count += 3;
-        } 
-      } */}
-      </div>;
+    for (let i = 0; i < numColumns; i++) {
+      let row = [];
+      for (let j = 0; j < 4; j++) {
+        if (articles[count] !== undefined) {
+          row.push(articles[count]);
+        }
+        count++;
+      }
+      rows.push(row);
     }
 
-    let cards = articles.map((article, i) => {
-      return <Card {...article} key={i} />;
+    return rows.map((row) => {
+      return (
+        <div className='columns'>
+          {row.map((article, i) => {
+            return (
+              <div className='column'>
+                <Card {...article} key={i} />
+              </div>
+            );
+          })}
+        </div>
+      );
     });
-    return cards;
   };
 
   return (
     <section className='section'>
-      <div className='container'>
-        <div className='columns'>
-          <div className='column'>{renderCards()}</div>
-        </div>
-      </div>
+      <div className='container'>{renderCards()}</div>
     </section>
   );
 };
