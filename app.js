@@ -6,10 +6,7 @@ const path = require('path');
 var cors = require('cors');
 // routes
 const articles = require('./routes/api/articles');
-// const ToBeModerated = require('./models/ToBeModerated');
-// const ToBeAnalysed = require('./models/ToBeAnalysed');
-// const DeletedArticles = require('./models/DeletedArticles');
-// const CompletedArticles = require('./models/CompletedArticles');
+const analyst = require('./routes/api/analyst');
 
 const app = express();
 
@@ -24,30 +21,9 @@ app.use(express.json({ extended: false }));
 
 // use Routes
 app.use('/api/articles', articles);
+app.use('/api/analyst', analyst);
 
 const port = process.env.PORT || 3000;
-
-// const data = {
-//   author: 'author',
-//   journalName: 'asd',
-//   yearOfPublication: 'asd',
-// };
-
-// ToBeModerated.create(data)
-//   .then(console.log('working'))
-//   .catch((err) => console.log(err));
-
-// ToBeAnalysed.create(data)
-//   .then(console.log('working'))
-//   .catch((err) => console.log(err));
-
-// DeletedArticles.create(data)
-//   .then(console.log('working'))
-//   .catch((err) => console.log(err));
-
-// CompletedArticles.create(data)
-//   .then(console.log('working'))
-//   .catch((err) => console.log(err));
 
 app.use(express.static(path.join(__dirname, '/frontend/build')));
 
