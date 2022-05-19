@@ -11,6 +11,16 @@ const SubmitArticle = () => {
   const [pageNumber, setPageNumber] = useState('N/A');
   const [doi, setDoi] = useState('N/A');
 
+  /* ALERT HANDLING */
+  const [successAlert, setSuccessAlert] = useState(false);
+  const [errorAlert, setErrorAlert] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(
+    'Successfully submitted! Your submission will be reviewed shortly.'
+  );
+  const [errorMessage, setErrorMessage] = useState(
+    'Error submitting article. Please try again shortly.'
+  );
+
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -28,20 +38,29 @@ const SubmitArticle = () => {
       .post(`${API_ENDPOINT}/api/articles`, articleData)
       .then((res) => {
         if (res.status === 200) {
-          alert('Successfully submitted article');
+          setSuccessMessage(
+            `Successfully submitted ${journalName}! Your submission will be reviewed shortly.`
+          );
+          setSuccessAlert(true);
           setJournalName('');
           setAuthorName('');
           setPublicationYear('');
-          setVolume('');
-          setNumber('');
-          setPageNumber('');
-          setDoi('');
+          setVolume('N/A');
+          setNumber('N/A');
+          setPageNumber('N/A');
+          setDoi('N/A');
         } else {
-          alert('Error submitting article. Status: ' + res.status);
+          setErrorMessage(
+            `Error submitting article: ${res.status}. Please try again shortly.`
+          );
+          setErrorAlert(true);
         }
       })
       .catch((err) => {
-        alert('Error submitting article: ' + err);
+        setErrorMessage(
+          `Error submitting article: ${err}. Please try again shortly.`
+        );
+        setErrorAlert(true);
       });
   };
 
@@ -50,6 +69,18 @@ const SubmitArticle = () => {
       <div className='container'>
         <h2 className='subtitle'>Submit an Article</h2>
 
+        {successAlert && (
+          <div className='notification is-success' name='reference'>
+            {successMessage}
+          </div>
+        )}
+
+        {errorAlert && (
+          <div className='notification is-danger' name='reference'>
+            {errorMessage}
+          </div>
+        )}
+
         <form onSubmit={onSubmit}>
           <div className='field'>
             <label className='label'>Journal Name*</label>
@@ -57,6 +88,7 @@ const SubmitArticle = () => {
               <input
                 className='input'
                 type='text'
+                value={journalName}
                 placeholder='Journal name'
                 onChange={(e) => setJournalName(e.target.value)}
                 required
@@ -69,6 +101,7 @@ const SubmitArticle = () => {
               <input
                 className='input'
                 type='text'
+                value={authorName}
                 placeholder='Author name'
                 onChange={(e) => setAuthorName(e.target.value)}
                 required
@@ -81,6 +114,7 @@ const SubmitArticle = () => {
               <input
                 className='input'
                 type='text'
+                value={publicationYear}
                 placeholder='Year of Publication (e.g. 2022)'
                 onChange={(e) => setPublicationYear(e.target.value)}
                 required
@@ -95,6 +129,7 @@ const SubmitArticle = () => {
                   <input
                     className='input'
                     type='text'
+                    value={volume}
                     placeholder='Volume (optional)'
                     onChange={(e) => setVolume(e.target.value)}
                   />
@@ -106,6 +141,7 @@ const SubmitArticle = () => {
                   <input
                     className='input'
                     type='text'
+                    value={number}
                     placeholder='Article number (optional)'
                     onChange={(e) => setNumber(e.target.value)}
                   />
@@ -117,6 +153,7 @@ const SubmitArticle = () => {
                   <input
                     className='input'
                     type='text'
+                    value={pageNumber}
                     placeholder='Page number (optional)'
                     onChange={(e) => setPageNumber(e.target.value)}
                   />
@@ -130,6 +167,7 @@ const SubmitArticle = () => {
               <input
                 className='input'
                 type='text'
+                value={doi}
                 placeholder='DOI link'
                 onChange={(e) => setDoi(e.target.value)}
               />
