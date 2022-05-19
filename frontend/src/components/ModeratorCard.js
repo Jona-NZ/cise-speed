@@ -12,9 +12,10 @@ const ModeratorCard = (props) => {
       .delete(`${API_ENDPOINT}/api/articles/${id}`)
       .then((res) => {
         if (res.status === 200) {
-          console.log('Article deleted');
+          alert('Article deleted'); //deleting for now, will be transferred to deleted collection later
+          window.location.reload();
         } else {
-          console.log('Error deleting article');
+          alert('Error deleting article');
         }
       })
       .catch((err) => {
