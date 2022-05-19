@@ -30,6 +30,9 @@ const ToBeAnalysedSchema = new mongoose.Schema({
   extractedText: {
     type: String,
   },
+  articleMethodology: {
+    type: String,
+  },
 });
 
 const ToBeAnalysed = mongoose.model(

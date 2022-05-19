@@ -23,6 +23,12 @@ router.get('/:id', (req, res) => {
     .catch((err) => res.status(500).json({}));
 });
 
+router.get('/search/:search', (req, res) => {
+  ToBeModerated.find({ methodology: req.params.search })
+    .then((articles) => res.json(articles))
+    .catch((err) => res.status(500).json({ error: 'Error: ' + err }));
+});
+
 router.delete('/:id', (req, res) => {
   ToBeModerated.findByIdAndRemove(req.params.id)
     .then(() => res.json({ msg: 'Article deleted successfully' }))
