@@ -1,4 +1,4 @@
-const Card = (props) => {
+const AnalystCard = (props) => {
   return (
     <div className="card">
       <header className="card-header">
@@ -41,6 +41,9 @@ const Card = (props) => {
       </div>
       <footer className="card-footer">
         <a href="/" className="card-footer-item">
+          Edit
+        </a>
+        <a href="/" className="card-footer-item">
           Approve
         </a>
         <a href="/" className="card-footer-item">
@@ -51,4 +54,4 @@ const Card = (props) => {
   );
 };
 
-export default Card;
+export default AnalystCard;
