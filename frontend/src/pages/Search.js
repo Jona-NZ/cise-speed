@@ -1,104 +1,86 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { API_ENDPOINT } from '../api/index';
+import axios from 'axios';
 
 const Search = () => {
+  const [search, setSearch] = useState('');
+  const [results, setResults] = useState([]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log(search);
+
+    axios
+      .get(`${API_ENDPOINT}/api/articles/search/${search}`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => {
+        setResults(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <section className='section'>
       <div className='container'>
-        <h2 className='subtitle'>Search for an Article</h2>
-        <form action=''>
-          <div className='field'>
-            <label className='label'>Name</label>
-            <div className='control'>
-              <input className='input' type='text' placeholder='Text input' />
-            </div>
-          </div>
-
-          <div className='field'>
-            <label className='label'>Username</label>
-            <div className='control has-icons-left has-icons-right'>
-              <input
-                className='input is-success'
-                type='text'
-                placeholder='Text input'
-                value='bulma'
-              />
-              <span className='icon is-small is-left'>
-                <i className='fas fa-user'></i>
-              </span>
-              <span className='icon is-small is-right'>
-                <i className='fas fa-check'></i>
-              </span>
-            </div>
-            <p className='help is-success'>This username is available</p>
-          </div>
-
-          <div className='field'>
-            <label className='label'>Email</label>
-            <div className='control has-icons-left has-icons-right'>
-              <input
-                className='input is-danger'
-                type='email'
-                placeholder='Email input'
-                value='hello@'
-              />
-              <span className='icon is-small is-left'>
-                <i className='fas fa-envelope'></i>
-              </span>
-              <span className='icon is-small is-right'>
-                <i className='fas fa-exclamation-triangle'></i>
-              </span>
-            </div>
-            <p className='help is-danger'>This email is invalid</p>
-          </div>
-
-          <div className='field'>
-            <label className='label'>Subject</label>
-            <div className='control'>
-              <div className='select'>
-                <select>
-                  <option>Select dropdown</option>
-                  <option>With options</option>
-                </select>
+        <h2 className='subtitle'>Search for an Article by Methodology</h2>
+        <form onSubmit={handleSearch}>
+          <div className='field is-horizontal'>
+            <div className='field-body'>
+              <div className='control'>
+                <div className='select'>
+                  <select onChange={(e) => setSearch(e.target.value)}>
+                    <option>Select Methodology</option>
+                    <option>TDD</option>
+                  </select>
+                </div>
+              </div>
+              <div className='field'>
+                <button
+                  className='button is-link'
+                  style={{ marginLeft: '10px' }}
+                >
+                  Search
+                </button>
               </div>
             </div>
           </div>
-
-          <div className='field'>
-            <label className='label'>Message</label>
-            <div className='control'>
-              <textarea className='textarea' placeholder='Textarea'></textarea>
-            </div>
-          </div>
-
-          <div className='field'>
-            <div className='control'>
-              <label className='checkbox'>
-                <input type='checkbox' /> I agree to the{' '}
-                <a href='/'>terms and conditions</a>
-              </label>
-            </div>
-          </div>
-
-          <div className='field'>
-            <div className='control'>
-              <label className='radio'>
-                <input type='radio' name='question' /> Yes
-              </label>
-              <label className='radio'>
-                <input type='radio' name='question' /> No
-              </label>
-            </div>
-          </div>
-
-          <div className='field is-grouped'>
-            <div className='control'>
-              <button className='button is-link'>Submit</button>
-            </div>
-            <div className='control'>
-              <button className='button is-link is-light'>Cancel</button>
-            </div>
-          </div>
         </form>
+
+        {results.length > 0 && (
+          <table className='table'>
+            <thead>
+              <tr>
+                <th>Journal Name</th>
+                <th>Author</th>
+                <th>Publication Year</th>
+                <th>Volume</th>
+                <th>Number</th>
+                <th>Pages</th>
+                <th>DOI</th>
+              </tr>
+            </thead>
+            <tbody>
+              {results.map((article, i) => {
+                return (
+                  <tr key={i}>
+                    <td>{article.journalName}</td>
+                    <td>{article.author}</td>
+                    <td>{article.yearOfPublication}</td>
+                    <td>{article.volume}</td>
+                    <td>{article.number}</td>
+                    <td>{article.pages}</td>
+                    <td>{article.doi}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </div>
     </section>
   );

@@ -30,6 +30,9 @@ const CompletedArticlesSchema = new mongoose.Schema({
   extractedText: {
     type: String,
   },
+  articleMethodology: {
+    type: String,
+  },
 });
 
 const CompletedArticles = mongoose.model(
