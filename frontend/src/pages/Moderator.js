@@ -15,43 +15,40 @@ const Moderator = () => {
       })
       .then((res) => {
         setArticles(res.data);
-        console.log(res);
       })
       .catch((err) => {
         alert('Unable to retrieve articles: ' + err);
       });
   }, []);
 
+  let renderCards = () => {
+    let numColumns = Math.round(articles.length / 4);
+    console.log(numColumns);
+
+    let count = 0;
+
+    for (let i = numColumns; i >= 0; i--) {
+      <div className='columns'>
+        {/* for (let i = 0; i < 4; i++) {
+
+        if (i == 3) {
+          count += 3;
+        } 
+      } */}
+      </div>;
+    }
+
+    let cards = articles.map((article, i) => {
+      return <Card {...article} key={i} />;
+    });
+    return cards;
+  };
+
   return (
     <section className='section'>
       <div className='container'>
-        <div class='columns'>
-          <div class='column'>
-            <Card journalName='this is a journal' author='test Author' />
-          </div>
-          <div class='column'>
-            <Card journalName='this is a journal' />
-          </div>
-          <div class='column'>
-            <Card journalName='this is a journal' />
-          </div>
-          <div class='column'>
-            <Card journalName='this is a journal' />
-          </div>
-        </div>
-        <div class='columns'>
-          <div class='column'>
-            <Card journalName='this is a journal' />
-          </div>
-          <div class='column'>
-            <Card journalName='this is a journal' />
-          </div>
-          <div class='column'>
-            <Card journalName='this is a journal' />
-          </div>
-          <div class='column'>
-            <Card journalName='this is a journal' />
-          </div>
+        <div className='columns'>
+          <div className='column'>{renderCards()}</div>
         </div>
       </div>
     </section>
