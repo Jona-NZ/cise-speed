@@ -2,6 +2,7 @@ const express = require('express');
 const res = require('express/lib/response');
 const router = express.Router();
 const ToBeModerated = require('../../models/ToBeModerated');
+const ToBeAnalysed = require('../../models/ToBeAnalysed');
 
 router.post('/', (req, res) => {
   ToBeModerated.create(req.body)
@@ -37,6 +38,16 @@ router.delete('/:id', (req, res) => {
         error: 'Unable to delete this article' + err,
       })
     );
+});
+
+router.post('/movetoanalysis/', (req, res) => {
+  ToBeAnalysed.create(req.body)
+    .then((res) => {
+      console.log('Analysed created successfully ' + res);
+    })
+    .catch((err) => {
+      console.log('Error: ' + err);
+    });
 });
 
 module.exports = router;
