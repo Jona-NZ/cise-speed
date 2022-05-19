@@ -17,4 +17,20 @@ router.get('/', (req, res) => {
     .catch((err) => res.status(500).json({}));
 });
 
+router.get('/:id', (req, res) => {
+  ToBeModerated.findById({ _id: req.params.id })
+    .then((article) => res.json(article))
+    .catch((err) => res.status(500).json({}));
+});
+
+router.delete('/:id', (req, res) => {
+  ToBeModerated.findByIdAndRemove(req.params.id)
+    .then(() => res.json({ msg: 'Article deleted successfully' }))
+    .catch((err) =>
+      res.status(400).json({
+        error: 'Unable to delete this article' + err,
+      })
+    );
+});
+
 module.exports = router;
