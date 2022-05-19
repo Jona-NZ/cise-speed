@@ -54,7 +54,16 @@ const Moderator = () => {
 
   return (
     <section className='section'>
-      <div className='container'>{renderCards()}</div>
+      <div className='container'>
+        {articles.length === 0 && (
+          <div className='notification is-warning'>
+            <p className='has-text-centered is-size-4'>
+              <strong>No articles to moderate</strong>
+            </p>
+          </div>
+        )}
+        {renderCards()}
+      </div>
     </section>
   );
 };
