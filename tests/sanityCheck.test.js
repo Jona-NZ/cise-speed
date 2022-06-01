@@ -3,5 +3,5 @@ test('Sanity check for true', () => {
 });
 
 test('Sanity check for false', () => {
-  expect(false).toBe(true);
+  expect(false).toBe(false);
 });
