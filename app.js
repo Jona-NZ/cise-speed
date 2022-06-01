@@ -7,6 +7,7 @@ var cors = require('cors');
 // routes
 const articles = require('./routes/api/articles');
 const analyst = require('./routes/api/analyst');
+const admin = require('./routes/api/admin');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(express.json({ extended: false }));
 // use Routes
 app.use('/api/articles', articles);
 app.use('/api/analyst', analyst);
+app.use('/api/admin', admin);
 
 const port = process.env.PORT || 3000;
 
