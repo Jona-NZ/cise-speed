@@ -37,7 +37,7 @@ const Admin = () => {
       rows.push(row);
     }
 
-    return rows.map((row) => {
+    return rows.map((row, i) => {
       return (
         <div className='columns'>
           {row.map((article, i) => {
