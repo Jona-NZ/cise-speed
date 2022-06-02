@@ -18,6 +18,11 @@ jobs:
       - name: Install Depedencies
         run: npm install
 
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          MONGODB_CONNECTION_STRING: ${{ secrets.MONGODB_CONNECTION_STRING }}
+
       - name: Run the tests
         run: npm test
       - uses: akhileshns/heroku-deploy@v3.12.12
