@@ -19,16 +19,10 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Install Depedencies
-        run: npm install
-
-      # - name: Create .env file
-      #   uses: SpicyPizza/create-envfile@v1.3.0
-      #   with:
-      #     envkey_SECRET_KEY: ${{ secrets.MONGODB_CONNECTION_STRING }}
-
       - name: Run the tests
+        run: npm install
         run: npm test
+
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
