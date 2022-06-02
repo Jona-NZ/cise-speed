@@ -3,7 +3,7 @@ const supertest = require('supertest');
 const request = supertest(app);
 
 it("Gets the '/' endpoint", async () => {
-  const res = await request.get('/api/analyst');
+  const res = await request.get('/api/analyst').send();
 
-  expect(res.status).toBe(200);
+  expect(res.statusCode).toBe(200);
 });

@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  MONGODB_CONNECTION_STRING: ${{ secrets.MONGODB_CONNECTION_STRING }}
+  CI: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,6 +21,11 @@ jobs:
 
       - name: Install Depedencies
         run: npm install
+
+      # - name: Create .env file
+      #   uses: SpicyPizza/create-envfile@v1.3.0
+      #   with:
+      #     envkey_SECRET_KEY: ${{ secrets.MONGODB_CONNECTION_STRING }}
 
       - name: Run the tests
         run: npm test
