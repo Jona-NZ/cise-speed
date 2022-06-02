@@ -19,8 +19,10 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Run the tests
+      - name: Install Depedencies
         run: npm install
+
+      - name: Run the tests
         run: npm test
 
       - uses: akhileshns/heroku-deploy@v3.12.12
