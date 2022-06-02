@@ -19,7 +19,7 @@ jobs:
         run: npm install
 
       - name: Create .env file
-        uses: SpicyPizza/create-envfile@v1
+        uses: SpicyPizza/create-envfile@v1.3.0
         with:
           envkey_SECRET_KEY: ${{ secrets.MONGODB_CONNECTION_STRING }}
 
